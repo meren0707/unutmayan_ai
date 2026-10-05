@@ -15,7 +15,10 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' })); // Büyük context verileri için limit yükseltildi
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+// Ana dizine girildiğinde doğrudan index.html dosyasını gönder
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 // Sohbet geçmişini saklayan bellek (İsteğe göre bir veritabanına kaydedilebilir)
