@@ -59,41 +59,25 @@ let conversationHistory = [
 
                             try {
 
-                                const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
-
-                                      method: "POST",
-
-                                            headers: {
-
-                                                    "Authorization": `Bearer ${process.env.NVIDIA_API_KEY}`,
-
-                                                            "Content-Type": "application/json",
-
-                                                                    "Accept": "application/json"
-
-                                                                          },
-
-                                                                                body: JSON.stringify({
-
-                                                                                        model: "z-ai/glm-4-flash", // NVIDIA Build endpoint modeli
-
-                                                                                                messages: conversationHistory,
-
-                                                                                                        temperature: 0.7,
-
-                                                                                                                top_p: 1,
-
-                                                                                                                        max_tokens: 4096,
-
-                                                                                                                                stream: false
-
-                                                                                                                                      })
-
-                                                                                                                                          });
+                                 const response = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.NVIDIA_API_KEY}`,
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        model: "z-ai/glm-5.3-flash", // Güncel model ismi
+        messages: conversationHistory,
+        temperature: 0.7,
+        top_p: 1,
+        max_tokens: 4096,
+        stream: false
+      })
+    });
 
 
-
-                                                                                                                                              if (!response.ok) {
+                                                     if (!response.ok) {
 
                                                                                                                                                     const errText = await response.text();
 
